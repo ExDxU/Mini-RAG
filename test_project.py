@@ -1,4 +1,4 @@
-from project import load_notes, split_into_chunks, rank_chunks, build_prompt, is_relevant
+from project import load_notes, split_into_chunks, rank_chunks, build_prompt, is_relevant, evaluate
 import pytest
 
 def test_load_notes(tmp_path):
@@ -74,3 +74,14 @@ def test_is_relevant():
 
     # Cenário 4: Lista vazia (proteção contra erro de índice) -> Deve ser False
     assert is_relevant([]) == False
+
+def test_evaluate():
+    chunks = [
+        {"source": "aula0.md", "section": "Variaveis", "text": "Variaveis guardam valores int e str na memoria"},
+        {"source": "aula4.md", "section": "Bibliotecas", "text": "Usamos import random e sys.argv para argumentos"},
+        {"source": "aula8.md", "section": "POO", "text": "Classes, objetos, heranca e polimorfismo em Python"}]
+
+    cases_100 = [
+        {"question": "O que são variáveis?", "expected_source": "Variaveis guardam valores int e str na memoria"},
+        {"question": "", "expected_source": ""}
+    ]

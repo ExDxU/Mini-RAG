@@ -25,8 +25,8 @@ def main():
     pedacos = []
     for name in folder:
         pedacos.extend(split_into_chunks(name["text"], name["source"]))
-    ranked_chunks = rank_chunks(pergunta, pedacos)
-    if is_relevant(ranked_chunks):
+    ranked_chunks = rank_chunks(pergunta, pedacos)                          
+    if not is_relevant(ranked_chunks):
         sys.exit("Nao encontrei isso nas anotacoes - not relevant")
     builded_prompt = build_prompt(pergunta, ranked_chunks)
     resposta = ask_llm(builded_prompt)

@@ -82,6 +82,15 @@ def test_evaluate():
         {"source": "aula8.md", "section": "POO", "text": "Classes, objetos, heranca e polimorfismo em Python"}]
 
     cases_100 = [
-        {"question": "O que são variáveis?", "expected_source": "Variaveis guardam valores int e str na memoria"},
-        {"question": "", "expected_source": ""}
+        {"question": "O que são variáveis?", "expected_source": "aula0.md"},
+        {"question": "O que são bibliotecas?", "expected_source": "aula4.md"}
     ]
+
+    cases_50 = [
+            {"question": "O que são variáveis?", "expected_source": "aula0.md"},
+            {"question": "O que são bibliotecas?", "expected_source": "aula8.md"}
+        ]
+
+    assert evaluate(chunks, cases_100) == 1.0
+    assert evaluate(chunks, cases_50) == 0.5
+    assert (evaluate(chunks, []) == 0)

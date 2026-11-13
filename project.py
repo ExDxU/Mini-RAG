@@ -129,9 +129,7 @@ def is_relevant(results, threshold=0.1):
     """True se a maior similaridade for maior ou igual ao limiar"""
     if not results:
         return False
-    else:
-        if results[0]["score"] >= threshold:
-            return True
+    return results[0]["score"] >= threshold
 
 def build_prompt(question, chunks):
     """Monta o prompt com regras, trechos numerados e a pergunta"""

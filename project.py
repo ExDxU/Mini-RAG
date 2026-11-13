@@ -25,6 +25,18 @@ def main():
     pedacos = []
     for name in folder:
         pedacos.extend(split_into_chunks(name["text"], name["source"]))
+
+    # ----- bloco de verificacao -----
+    if pergunta == "--eval":
+        casos_teste = [
+            {"question": "O que é uma função e quais seus argumentos?", "expected_source": "semana-00-funcoes-e-variaveis.md"},
+            {"question": "Qual a diferença entre argumento e parâmetro?", "expected_source": "semana-00-funcoes-e-variaveis.md"},
+            {"question": "Para que serve o return em uma função?", "expected_source": "semana-00-funcoes-e-variaveis.md"},
+        ]
+        taxa = evaluate(pedacos, casos_teste)
+        print(f"Taxa de acerto Top-3: {taxa:.0%}")
+        return
+    # ------ Fim do bloco de verificacao -----
     ranked_chunks = rank_chunks(pergunta, pedacos)                          
     if not is_relevant(ranked_chunks):
         sys.exit("Nao encontrei isso nas anotacoes - not relevant")
@@ -160,7 +172,15 @@ def ask_llm(prompt):
 
 def evaluate(chunks, cases):
     """Devole a taxa de acerto top-3"""
-    ...
+    if not cases:
+        return 0.0
+    acertos = 0
+    for caso in cases:
+        resultados = rank_chunks(caso["question"], chunks, k=3)
+        arquivos_encontrados = [r["source"] for r in resultados]
+        if caso["expected_source"] in arquivos_encontrados:
+            acertos += 1
+    return acertos/len(cases)
 
 if __name__=="__main__":
     main()

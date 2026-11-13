@@ -88,7 +88,7 @@ def test_evaluate():
 
     cases_50 = [
             {"question": "O que são variáveis?", "expected_source": "aula0.md"},
-            {"question": "O que são bibliotecas?", "expected_source": "aula8.md"}
+            {"question": "O que são bibliotecas?", "expected_source": "aula99.md"}
         ]
 
     assert evaluate(chunks, cases_100) == 1.0

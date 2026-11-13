@@ -1,5 +1,5 @@
 # CS50P Study Notes Mini-RAG
-#### Video Demo:  <URL HERE>
+#### Video Demo: https://youtube.com/shorts/VCxYGl8mu9w?is=njmysi3NawwDJN0P
 #### Description:
 
 **CS50P Study Notes Mini-RAG** is a command-line interface (CLI) application built in Python that implements a local Retrieval-Augmented Generation (RAG) pipeline over personal study notes written in Markdown (`.md`) and plain text (`.txt`). Designed to help students query their own Portuguese study materials from Harvard's CS50P course, the tool combines classical information retrieval techniques—specifically TF-IDF vectorization and cosine similarity via `scikit-learn`—with Google's Gemini LLM (`google-genai`) to generate accurate, grounded, and source-cited answers directly in the terminal.
